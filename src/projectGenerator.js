@@ -12,7 +12,10 @@ export async function createJavaProject(rootPath, projectName, packageName) {
     const project = fs(`${rootPath}/${projectName}`);
 
     await project.createDirectory("src");
-    await project.createDirectory("README.md"); // temporary test
+    await project.createFile(
+    "README.md",
+    `# ${projectName}`
+); // temporary test
 
     acode.alert(
         "JavaX",

@@ -1,12 +1,20 @@
-const index = await acode.select(
+export function showHome() {
+
+  acode.select(
     "JavaX",
     [
-        "☕ New Java Project",
-        "⚙ New Gradle Project",
-        "📦 New Maven Project",
-        "📂 Open Existing Project",
-        "⚙ Settings"
-    ]
-);
+      "☕ New Java Project",
+      "⚙ New Gradle Project",
+      "📦 New Maven Project",
+      "📂 Open Existing Project",
+      "⚙ Settings"
+    ],
+    function(index){
 
-alert(index);
+      alert("Selected index = " + index);
+
+    }
+
+  );
+
+}

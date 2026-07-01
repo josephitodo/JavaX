@@ -1,15 +1,17 @@
-export async function showProjectWizard(type){
+import { createJavaProject } from "./projectGenerator";
+
+export async function showProjectWizard(type) {
 
     const projectName = prompt("Project Name");
 
-    if(!projectName) return;
+    if (!projectName) return;
 
     const packageName = prompt(
         "Package Name",
         "com.example"
     );
 
-    if(!packageName) return;
+    if (!packageName) return;
 
     const javaVersion = await acode.select(
         "Java Version",
@@ -21,21 +23,13 @@ export async function showProjectWizard(type){
         ]
     );
 
-    alert(
+    if (!javaVersion) return;
 
-`Creating ${type} project
-
-Project:
-${projectName}
-
-Package:
-${packageName}
-
-Java:
-${javaVersion}
-
-(Next version will generate the project.)`
-
+    await createJavaProject(
+        "/storage/emulated/0",
+        projectName,
+        packageName,
+        javaVersion,
+        type
     );
-
 }

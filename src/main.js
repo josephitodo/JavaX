@@ -1,5 +1,6 @@
 import plugin from "../plugin.json";
 import { showHome } from "./ui";
+import { createJavaProject } from "./projectGenerator";
 
 class JavaX {
 

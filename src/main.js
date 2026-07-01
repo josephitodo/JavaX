@@ -1,49 +1,25 @@
 import plugin from "../plugin.json";
+import { showHome } from "./ui";
 
 class JavaX {
 
   async init() {
-
-    console.log("JavaX v0.1.0 Loaded");
-
-    if (window.acode) {
-      acode.alert(
-        "JavaX",
-        "JavaX Plugin Loaded Successfully!"
-      );
-    }
-
+    showHome();
   }
 
   async destroy() {
-
-    console.log("JavaX Unloaded");
-
+    console.log("JavaX unloaded");
   }
-
 }
 
 if (window.acode) {
+  const app = new JavaX();
 
-  const javax = new JavaX();
+  acode.setPluginInit(plugin.id, async () => {
+    await app.init();
+  });
 
-  acode.setPluginInit(
-    plugin.id,
-    async (baseUrl, $page, { cacheFileUrl, cacheFile }) => {
-
-      if (!baseUrl.endsWith("/"))
-        baseUrl += "/";
-
-      javax.baseUrl = baseUrl;
-
-      await javax.init($page, cacheFile, cacheFileUrl);
-
-    }
-  );
-
-  acode.setPluginUnmount(
-    plugin.id,
-    () => javax.destroy()
-  );
-
+  acode.setPluginUnmount(plugin.id, () => {
+    app.destroy();
+  });
 }

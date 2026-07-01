@@ -1,20 +1,16 @@
-export function showHome() {
+export async function showHome() {
 
-  acode.select(
-    "JavaX",
-    [
-      "☕ New Java Project",
-      "⚙ New Gradle Project",
-      "📦 New Maven Project",
-      "📂 Open Existing Project",
-      "⚙ Settings"
-    ],
-    function(index){
+    const result = await acode.select(
+        "JavaX",
+        [
+            "☕ New Java Project",
+            "⚙ New Gradle Project",
+            "📦 New Maven Project",
+            "📂 Open Existing Project",
+            "⚙ Settings"
+        ]
+    );
 
-      alert("Selected index = " + index);
-
-    }
-
-  );
+    alert(JSON.stringify(result));
 
 }
